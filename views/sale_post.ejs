@@ -35,8 +35,12 @@
         <% include ./header.ejs %>
     </div>
 
-    <div class="content">
+    <div class="content" >
         <img class="imgForm" src="../public/images/form_top.png" />
+        <div class="post_title">
+            <h2>판매글 작성</h2>
+            <h5 style="font-weight: normal;">-자신만의 특별한 소개문구 작성!-</h5>
+        </div>
         <div class="post_form">
             <form action="/product/sale_post" enctype="multipart/form-data" method="post">
                 <div class="post_box">
@@ -100,13 +104,16 @@
                             style="resize: none;width: 100%;"></textarea>
                     </div>
                     <div class="btnsubmitbox">
-                        <input class="btn1" type="submit" value="작성" />
+                        <input class="btn1" type="submit" value="작성" style="float: right;" />
                     </div>
                 </div>
             </form>
         </div>
         <img class="imgForm" src="../public/images/form_bottom.png" />
     </div>
+    <div class="footer">
+            <% include ./footer.ejs %>
+        </div>
 
 </body>
 

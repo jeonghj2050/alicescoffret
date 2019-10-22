@@ -5,6 +5,7 @@ const transaction=require('./Transaction_route');
 const point = require("./Point_route");
 const question = require("./Question_route");
 const mypage=require("./Mypage_route");
+const ranking=require("./Ranking_route");
 let session=require('express-session');
 
 const Product=require("../models/Product");
@@ -88,5 +89,6 @@ router.use('/point',point);
 router.use('/question',question);
 router.use('/transaction',transaction);
 router.use('/mypage',mypage);
+router.use('/ranking',ranking);
 
 module.exports=router;

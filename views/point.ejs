@@ -7,19 +7,19 @@
 </head>
 
 <body>
-<div class="header">
-    <% include ./header.ejs %>
-</div>
+    <div class="header">
+        <% include ./header.ejs %>
+    </div>
 
-<div id="root">
-    <% if(session.point_status==false) { %>
-    <script type="text/javascript">
-        alert("point 부족!!")    
-    </script>
-    <% } %>
-    <div class="app-main">
-        <div class="kr-payment-options">
- <!--           <div class="left-panel">
+    <div id="root">
+        <% if(session.point_status==false) { %>
+        <script type="text/javascript">
+            alert("point 부족!!")    
+        </script>
+        <% } %>
+        <div class="app-main">
+            <div class="kr-payment-options">
+                <!--           <div class="left-panel">
                 <div class="content">
                     <h2>Alice's coffret</h2>
                     <p><b>충전하기</b></p>
@@ -33,91 +33,96 @@
                             <div><span id="purchasePrice" class="amount">+0</span><span class="currency"> POINT</span></div>
                         </li>
                     </ul> -->
-                </div>
-            </div>
-            <div class="right-side">
-                <div class="price-point-row">
-                    <dl>
-                        <dt><span>결제 금액</span></dt>
-                    </dl>
-                    <dd>
-                        <ul>
-                            <li>
-                                <div id="price1" class="price-point">
-                                    <div class="rp"><span class="amount">1000</span><span class="name">POINT</span></div>
-                                    <div class="price"><span>1,000원</span></div>
-                                </div>
-                            </li>
-                            <li>
-                                <div id="price2" class="price-point">
-                                    <div class="rp"><span class="amount">5300</span><span class="name">POINT</span></div>
-                                    <div class="price"><span>5,000원</span></div>
-                                </div>
-                            </li>
-                            <li>
-                                <div id="price3" class="price-point">
-                                    <div class="rp"><span class="amount">11000</span><span class="name">POINT</span></div>
-                                    <div class="price"><span>10,000원</span></div>
-                                </div>
-                            </li>
-                            <li>
-                                <div id="price4" class="price-point">
-                                    <div class="rp"><span class="amount">56500</span><span class="name">POINT</span></div>
-                                    <div class="price"><span>50,000원</span></div>
-                                </div>
-                            </li>
-                            <li>
-                                <div id="price5" class="price-point">
-                                    <div class="rp"><span class="amount">1,15000</span><span class="name">POINT</span></div>
-                                    <div class="price"><span>100,000원</span></div>
-                                </div>
-                            </li>
-                        </ul>
-                    </dd>
-                </div>
-                <div class="payment-method-row">
-                    <dl>
-                        <dt><span>결제 수단</span></dt>
-                    </dl>
-                    <dd>
-                        <div class="payment-method-tabs">
-                            <ol class="tab-list">
-                                <li class="tab-list-item active"><span>상품권류</span></li>
-                                <li class="tab-list-item"><span>신용카드</span></li>
-                                <li class="tab-list-item"><span>휴대폰</span></li>
-                                <li class="tab-list-item"><span>온라인이체</span></li>
-                                <li class="tab-list-item"><span>간편결제</span></li>
-                            </ol>
-
-                        </div>
-                    </dd>
-                </div>
-                <div class="legal-row">
-                    <dl>
-                        <dt><span>POINT 정책 동의 및 결제 전 주의사항</span></dt>
-                    </dl>
-                    <dd style="position: relative;">
-                        <div class="notice-box">
-                            <ul>
-                                <li>결제하기전에 확인하세요(찡긋)</li>
-                            </ul>
-                            <div class="controls">
-                                <div>상품,가격 및 유효기간<span>을 확인하였으며, </span>계약 관련 고지 사항<span> 과 </span>POINT정책<span>및 결제 진행에 동의합니다.</span></div>
-                                <div class="checkbox"><input type="checkbox" id="agreeBtn"><label for="agreeBtn"></label></div>
-                            </div>
-                        </div>
-                        <div></div>
-                    </dd>
-                </div>
-                <div class="button-row">
-                    <div id="btn-pay"><span class="btn-pay-font">결제</span></div>
-                </div>
-                <div></div>
-                <div></div>
             </div>
         </div>
+        <div class="right-side">
+            <div class="price-point-row">
+                <dl>
+                    <dt><span>결제 금액</span></dt>
+                </dl>
+                <dd>
+                    <ul>
+                        <li>
+                            <div id="price1" class="price-point">
+                                <div class="rp"><span class="amount">1000</span><span class="name">POINT</span></div>
+                                <div class="price"><span>1,000원</span></div>
+                            </div>
+                        </li>
+                        <li>
+                            <div id="price2" class="price-point">
+                                <div class="rp"><span class="amount">5300</span><span class="name">POINT</span></div>
+                                <div class="price"><span>5,000원</span></div>
+                            </div>
+                        </li>
+                        <li>
+                            <div id="price3" class="price-point">
+                                <div class="rp"><span class="amount">11000</span><span class="name">POINT</span></div>
+                                <div class="price"><span>10,000원</span></div>
+                            </div>
+                        </li>
+                        <li>
+                            <div id="price4" class="price-point">
+                                <div class="rp"><span class="amount">56500</span><span class="name">POINT</span></div>
+                                <div class="price"><span>50,000원</span></div>
+                            </div>
+                        </li>
+                        <li>
+                            <div id="price5" class="price-point">
+                                <div class="rp"><span class="amount">1,15000</span><span class="name">POINT</span></div>
+                                <div class="price"><span>100,000원</span></div>
+                            </div>
+                        </li>
+                    </ul>
+                </dd>
+            </div>
+            <div class="payment-method-row">
+                <dl>
+                    <dt><span>결제 수단</span></dt>
+                </dl>
+                <dd>
+                    <div class="payment-method-tabs">
+                        <ol class="tab-list">
+                            <li class="tab-list-item active"><span>상품권류</span></li>
+                            <li class="tab-list-item"><span>신용카드</span></li>
+                            <li class="tab-list-item"><span>휴대폰</span></li>
+                            <li class="tab-list-item"><span>온라인이체</span></li>
+                            <li class="tab-list-item"><span>간편결제</span></li>
+                        </ol>
+
+                    </div>
+                </dd>
+            </div>
+            <div class="legal-row">
+                <dl>
+                    <dt><span>POINT 정책 동의 및 결제 전 주의사항</span></dt>
+                </dl>
+                <dd style="position: relative;">
+                    <div class="notice-box">
+                        <ul>
+                            <li>결제하기전에 확인하세요(찡긋)</li>
+                        </ul>
+                        <div class="controls">
+                            <div>상품,가격 및 유효기간<span>을 확인하였으며, </span>계약 관련 고지 사항<span> 과 </span>POINT정책<span>및 결제 진행에
+                                    동의합니다.</span></div>
+                            <div class="checkbox"><input type="checkbox" id="agreeBtn"><label for="agreeBtn"></label>
+                            </div>
+                        </div>
+                    </div>
+                    <div></div>
+                </dd>
+            </div>
+            <div class="button-row">
+                <div id="btn-pay"><span class="btn-pay-font">결제</span></div>
+            </div>
+            <div></div>
+            <div></div>
+        </div>
     </div>
-</div>
+    </div>
+    </div>
+    <div class="footer">
+        <% include ./footer.ejs %>
+    </div>
 
 </body>
 
@@ -129,34 +134,34 @@
     var pointPrice = 0;
 
     $('.price-point').click(function () {
-            $('.price-point').removeClass('active');
-            var clickedItem = $(this).attr("id");
-            $('#' + clickedItem).addClass('active');
-           
-            switch (clickedItem) {
-                case 'price1':
-                    pointPrice = 1000;
-                    break;
+        $('.price-point').removeClass('active');
+        var clickedItem = $(this).attr("id");
+        $('#' + clickedItem).addClass('active');
 
-                case 'price2':
-                    pointPrice = 5300;
-                    break;
+        switch (clickedItem) {
+            case 'price1':
+                pointPrice = 1000;
+                break;
 
-                case 'price3':
-                    pointPrice = 11000;
-                    break;
+            case 'price2':
+                pointPrice = 5300;
+                break;
 
-                case 'price4':
-                    pointPrice = 56500;
-                    break;
+            case 'price3':
+                pointPrice = 11000;
+                break;
 
-                case 'price5':
-                    pointPrice = 115000;
-                    break;
-            }
+            case 'price4':
+                pointPrice = 56500;
+                break;
 
-            $('#pointPrices').text('+' + pointPrice);
+            case 'price5':
+                pointPrice = 115000;
+                break;
         }
+
+        $('#pointPrices').text('+' + pointPrice);
+    }
     );
 
     $('.tab-list-item').click(function () {
@@ -165,7 +170,7 @@
     });
 
     $('#btn-pay').click(function () {
-         alert('결제성공!');
+        alert('결제성공!');
         var form = document.createElement("form");
 
         form.setAttribute("charset", "UTF-8");
@@ -194,15 +199,15 @@
 </script>
 
 <style>
-    .tab-list-item:hover{
+    .tab-list-item:hover {
         cursor: pointer;
     }
-    
+
     .kr-payment-options {
         display: flex;
     }
 
-    .tab-list-item.active{
+    .tab-list-item.active {
         color: #ff0000;
     }
 
@@ -212,21 +217,22 @@
         height: auto;
         background-color: #fff;
         border-right: 1px solid #cacaca;
-        padding:30px 50px 0 30px;
+        padding: 30px 50px 0 30px;
 
 
     }
 
 
     .right-side {
-       
-      
-        width: 910px; 
+
+
+        width: 910px;
         margin: 0 auto;
         overflow: hidden;
         display: block;
 
     }
+
     .price-point .amount {
         font-size: 30px;
         line-height: 63px;
@@ -236,11 +242,13 @@
         display: inline-block;
         padding-left: 5px;
     }
+
     .price-point .price {
         margin-top: 10px;
         padding-left: 12px;
         font-size: 20px;
     }
+
     .price-point {
         color: #6c6c6c;
         width: 144px;
@@ -250,11 +258,14 @@
         cursor: pointer;
     }
 
-    element.style {
-    }
-    *, :after, :before {
+    element.style {}
+
+    *,
+    :after,
+    :before {
         box-sizing: inherit;
     }
+
     dt {
         border-top: 1px solid #bebebe;
         width: 144px;
@@ -267,31 +278,38 @@
         height: 61px;
         background-color: #fff;
     }
-    .price-point active{
+
+    .price-point active {
         display: block;
     }
+
     .price-point-row {
         display: -ms-flexbox;
         display: flex;
         margin-top: 15px;
     }
+
     .price-point .name {
         font-weight: 700;
         font-size: 10px;
-       
+
     }
+
     dl {
         margin: 0 7px 0 0;
     }
+
     .price-point-row dd {
         padding: 0;
         margin: 0;
     }
+
     dd {
         display: block;
         margin: 0px;
 
     }
+
     .legal-row .controls {
         background-color: #f3f3f3;
         margin: 56px 0 0 0;
@@ -303,7 +321,7 @@
 
         justify-content: space-between;
         height: 41px;
-    
+
         font-weight: 700;
         color: #4d4d4d;
         font-size: 13px;
@@ -314,6 +332,7 @@
         margin-top: 20px;
         text-align: right;
     }
+
     .price-point-row ul {
         list-style: none;
         display: -ms-flexbox;
@@ -321,17 +340,22 @@
         margin: 0;
         padding: 0;
     }
+
     .price-point-row li {
         margin-left: 7px;
     }
+
     .payment-method-row {
         margin-top: 15px;
         display: -ms-flexbox;
         display: flex;
     }
-    ol,ul{
+
+    ol,
+    ul {
         list-style: none;
     }
+
     .price-point.active {
         border: 4px solid #ff0000;
     }
@@ -345,28 +369,31 @@
         margin-left: 8px;
 
     }
+
     #btn-pay span {
         background-position: -591px -446px;
         width: 144px;
         height: 45px;
-        line-height:45px;
+        line-height: 45px;
         background-color: #ff0000;
         font-size: 20px;
-        color:#ffffff;
+        color: #ffffff;
         overflow: hidden;
         display: inline-block;
         cursor: pointer;
         text-align: center;
-        text-decoration:none;
-        float:right;
-        margin-top:20px;
-        margin-right:10px;
+        text-decoration: none;
+        float: right;
+        margin-top: 20px;
+        margin-right: 10px;
 
     }
-    .btn-pay{
-       text-align: right;
+
+    .btn-pay {
+        text-align: right;
     }
-    .legal-row{
+
+    .legal-row {
         display: flex;
     }
 
@@ -409,36 +436,40 @@
         padding: 30px 50px;
         position: relative;
     }
-    .right-side {
-    }
+
+    .right-side {}
+
     .right-side {
         overflow: hidden;
     }
-    *, :after, :before {
+
+    *,
+    :after,
+    :before {
         box-sizing: inherit;
     }
-    user agent stylesheet
-    div {
+
+    user agent stylesheet div {
         display: block;
     }
+
     body.kr {
         background-color: #fff;
-        
+
         font-size: 12px;
         color: #4c4c4c;
     }
+
     body {
-         font-family: Nanum Gothic,sans-serif;
+        font-family: Nanum Gothic, sans-serif;
         color: #a09b8c;
-       
+
         font-size: 14px;
         line-height: 1.48;
         margin: 0;
     }
-    user agent stylesheet
-    html {
+
+    user agent stylesheet html {
         color: -internal-root-color;
     }
-
-
 </style>

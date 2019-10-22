@@ -252,7 +252,8 @@
             <div style="float: right; margin-bottom: 20px;">
                 <input class="btn1" type="submit" value="수정">
                 <input class="btn1" type="button"
-                    onclick="javascript:window.location='/product/delete?productId=<%=session.productDetail.data._id %>'" value="삭제">
+                    onclick="javascript:window.location='/product/delete?productId=<%=session.productDetail.data._id %>'"
+                    value="삭제">
             </div>
         </form>
         <% }else{ %>
@@ -321,6 +322,9 @@
             </div>
         </form>
         <% } %>
+    </div>
+    <div class="footer">
+        <% include ./footer.ejs %>
     </div>
 </body>
 

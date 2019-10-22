@@ -1,0 +1,47 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Alice_Coffret-sale_post</title>
+
+    <style>
+        .price input[type="number"]::-webkit-outer-spin-button,
+        .price input[type="number"]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+    </style>
+    <link rel="stylesheet" href="../public/css/indexstyle.css">
+    <script>
+        function count_ck(obj) {
+            var chkbox = document.getElementsByName("tag[]");
+            var chkCnt = 0;
+            for (var i = 0; i < chkbox.length; i++) {
+                if (chkbox[i].checked) {
+                    chkCnt++;
+                }
+            }
+            if (chkCnt > 3) {
+                alert("태그는 3개까지만!");
+                obj.checked = false;
+                return false;
+            }
+        }
+    </script>
+
+</head>
+
+<body>
+    <div class="header">
+        <% include ./header.ejs %>
+    </div>
+
+    <div class="content">
+
+    </div>
+    <div class="footer">
+        <% include ./footer.ejs %>
+    </div>
+</body>
+
+</html>
