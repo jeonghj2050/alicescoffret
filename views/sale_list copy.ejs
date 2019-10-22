@@ -1,0 +1,147 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Alice_Coffret-sale_list</title>
+    <link href="../public/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .location-image img {
+            width: 100%;
+            /* need to overwrite inline dimensions */
+            height: auto;
+        }
+
+        h2 {
+            margin-bottom: .5em;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-gap: 1em;
+        }
+
+
+        /* hover styles */
+        .location-listing {
+            position: relative;
+        }
+
+        .location-image {
+            line-height: 0;
+            overflow: hidden;
+        }
+
+        .location-image img {
+            filter: blur(0px);
+            transition: filter 0.3s ease-in;
+            transform: scale(1.1);
+        }
+
+        .location-title {
+            font-size: 1.5em;
+            font-weight: bold;
+            text-decoration: none;
+            z-index: 1;
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity .5s;
+            background: rgba(90, 0, 10, 0.4);
+            color: white;
+
+            /* position the text in t’ middle*/
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .location-listing:hover .location-title {
+            opacity: 1;
+        }
+
+        .location-listing:hover .location-image img {
+            filter: blur(2px);
+        }
+
+
+        /* for touch screen devices */
+        @media (hover: none) {
+            .location-title {
+                opacity: 1;
+            }
+
+            .location-image img {
+                filter: blur(2px)
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <% include ./header.ejs %>
+    </div>
+
+    <div class="content">
+        <% if(!session.productInfo){ %>
+        Null!!!!
+        <% } %>
+        <div class="child-page-listing">
+            <h2>Earrings</h2>
+            <input type="button" onclick="javascript:window.location='/sale_post'" value="글작성">
+            <div class="grid-container">
+                <% for(var i=0; i< session.productInfo.earring_list.length; i++){ %>
+                <article id="" class="location-listing">
+                    <div class="location-image">
+                            <a href="#" class="portfolio-link" data-toggle="modal"
+                            onclick="javascript:window.location='/product/detail?productId=<%=session.productInfo.earring_list[i]._id %>'">
+                            <img width="300" height="169" src=<%=session.productInfo.earring_list[i].thumbnail %> />
+                        </a>
+                    </div>
+                    <div class="portfolio-caption"
+                        style="border: 1px solid #BEC8F8; padding : 5px; text-align: center;">
+                        <h4><%= session.productInfo.earring_list[i].product_name %></h4>
+                        <p class="text-muted">작성자 : <strong>
+                                <%= session.productInfo.earring_list[i].name %></strong>
+                        </p>
+                        <div class="tag_box">
+                            <% for(var j=0; j< session.productInfo.earring_list[i].tag.length; j++){
+                                                                var tag=session.productInfo.earring_list[i].tag[j]
+                                                                var tag_code
+                                                                if(tag=="봄"){
+                                                                    tag_code="tag_spring"
+                                                                }else if(tag=="여름"){
+                                                                    tag_code="tag_summer"
+                                                                }else if(tag=="가을"){
+                                                                    tag_code="tag_fall"
+                                                                }else if(tag=="겨울"){
+                                                                    tag_code="tag_winter"
+                                                                }else if(tag=="큐트"){
+                                                                    tag_code="tag_cute"
+                                                                }else if(tag=="화려"){
+                                                                    tag_code="tag_brilliant"
+                                                                }else if(tag=="우아"){
+                                                                    tag_code="tag_luxury"
+                                                                }else if(tag=="심플"){
+                                                                    tag_code="tag_simple"
+                                                                } %>
+                            <span class=<%= tag_code %>><%= session.productInfo.earring_list[i].tag[j] %></span>
+                            <% } %>
+                        </div>
+                    </div>
+                </article>
+                <% } %>
+            </div>
+</body>
+
+</html>
+<script>
+    $('#myTab a').click(function (e) {
+        e.preventDefault();
+        $(this).tab('show');
+    })
+</script>

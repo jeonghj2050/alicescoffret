@@ -1,0 +1,166 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Alice_Coffret-mypage</title>
+    <link href="../public/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .content {
+            margin: 0px auto;
+        }
+        .list_box{
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <% include ./header.ejs %>
+    </div>
+    <div class="content">
+        <!-- 구매 리스트가 있을 경우 -->
+        <% if(session.purchaseList) {%>
+        <div class="list_box ">
+            <h2>구매목록</h2>
+            <table class=" table table-hover">
+            <thead>
+                <tr>
+                    <th>번호</th>
+                    <th>상품명</th>
+                    <th>판매자</th>
+                    <th>거래 금액</th>
+                    <th>거래 상태</th>
+                    <th>거래 시작일</th>
+                    <th>거래 완료일</th>
+                    <th>비고</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for(var i=0; i< session.purchaseList.purchase_list.length; i++){ 
+                            purchaseList=session.purchaseList.purchase_list[i]
+                     %>
+                <tr>
+                    <td><%= i %></td>
+                    <td style=" text-align: center">
+                        <%= purchaseList.product_name %>
+                        <div class="pro_img">
+                            <a onclick="javascript:window.location='/product/detail?productId=<%=purchaseList.product_id %>'"
+                                class="product_name">
+                                <img name="thumbnail" style="width: 100px; height:100px;"
+                                    src=<%=purchaseList.thumbnail %> />
+                            </a>
+                        </div>
+                    </td>
+                    <td><%= purchaseList.sellers %></td>
+                    <td><%= purchaseList.total_price %></td>
+                    <td><%= purchaseList.transaction_status %></td>
+                    <td><%= moment(purchaseList.transaction_strart_date).format('YYYY-MM-DD HH:mm:ss')%></td>
+                    <td>
+                        <% if(purchaseList.transaction_end_date){ %>
+                        <%= moment(purchaseList.transaction_end_date).format('YYYY-MM-DD HH:mm:ss') %>
+                        <% }else{%>
+                        ---- -- --
+                        <% }%>
+                    </td>
+                    <td>
+                        <% if(purchaseList.transaction_status=="배송중"){ %>
+                        <input type="button" class="btn btn-success"
+                            onclick="javascript:window.location='/transaction/update_transaction?transactionId=<%=purchaseList._id %>'"
+                            value="거래확인">
+                        <% }else if(purchaseList.transaction_status=="거래완료"){ %>
+                        <input type="button" class="btn btn-success"
+                            onclick="javascript:window.location='/evaluation?transactionId=<%=purchaseList._id %>'"
+                            value="평가하기">
+                        <% }else if(purchaseList.transaction_status=="평가완료"){  %>
+                        <p style="color: crimson;">거래완료</p>
+                        <% } %>
+                    </td>
+                </tr>
+                <%} %>
+            </tbody>
+            </table>
+        </div>
+        <% }%>
+        <% if(session.saleList) {%>
+        <div class="list_box">
+            <h2>판매목록</h2>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>번호</th>
+                        <th>상품명</th>
+                        <th>구매자</th>
+                        <th>거래 상태</th>
+                        <th>거래 시작일</th>
+                        <th>배송일</th>
+                        <th>거래 완료일</th>
+                        <th>비고</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for(var i=0; i< session.saleList.sale_list.length; i++){ 
+                                saleList=session.saleList.sale_list[i]
+                     %>
+                    <tr>
+                        <td><%= i %></td>
+                        <td>
+                            <%= saleList.product_name %>
+                            <div class="pro_img">
+                                <a onclick="javascript:window.location='/product/detail?productId=<%=saleList.product_id %>'"
+                                    class="product_name">
+                                    <img name="thumbnail" style="width: 100px; height:100px;"
+                                        src=<%=saleList.thumbnail %> />
+                                </a>
+                            </div>
+                        </td>
+                        <td><%= saleList.purchaser %></td>
+                        <td><%= saleList.transaction_status %></td>
+                        <td><%= moment(saleList.transaction_strart_date).format('YYYY-MM-DD HH:mm:ss')%></td>
+                        <td>
+                            <% if(saleList.delivery_date){ %>
+                            <%= moment(saleList.delivery_date).format('YYYY-MM-DD HH:mm:ss') %>
+                            <% }else{%>
+                            ---- -- --
+                            <% }%>
+                        </td>
+                        <td>
+                            <% if(saleList.transaction_end_date){ %>
+                            <%= moment(saleList.transaction_end_date).format('YYYY-MM-DD HH:mm:ss') %>
+                            <% }else{%>
+                            ---- -- --
+                            <% }%>
+                        </td>
+                        <td>
+                            <% if(saleList.transaction_status=="거래중"){ %>
+                            <input type="button" class="btn btn-success"
+                                onclick="javascript:window.location='/transaction/update_transaction?transactionId=<%=saleList._id %>'"
+                                value="거래확인">
+                            <% }else if(saleList.transaction_status=="평가완료"){ %>
+                            <% } %>
+                        </td>
+                    </tr>
+                    <%if(saleList.evaluator){ %>
+                    <tr>
+                        <td></td>
+                        <td><b>평가자</b></td>
+                        <td><b>평가 등급</b></td>
+                        <td colspan="5"><b>평가 내용</b></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><%=saleList.evaluator %></td>
+                        <td><%=saleList.grade %></td>
+                        <td colspan="5"><%=saleList.comment %></td>
+                    </tr>
+                    <% } %>
+
+                    <%} %>
+                </tbody>
+            </table>
+        </div>
+        <% }%>
+    </div>
+</body>
+
+</html>

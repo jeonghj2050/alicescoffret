@@ -1,0 +1,145 @@
+html{
+  font-family: 'Sunflower', sans-serif;
+}
+/* login.ejs */
+.imgForm{
+    position: relative;
+    background-image: url(../images/imgForm.png);      
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 100vh;
+    
+}
+
+.imgForm .content{
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);                
+}
+
+.imgForm .content div input{
+    font-family: "Roboto", sans-serif;
+    outline: 0;
+    background: #f2f2f2;
+    color: #000000;
+    width: 100%;
+    border: 0;
+    margin: 0 0 15px;
+    padding: 15px;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+  .imgForm input {
+    font-family: "Roboto", sans-serif;
+    outline: 0;
+    background: #000000;
+    width:100%;
+    border: 0;
+    padding: 10px;
+    color: #FFFFFF;
+    font-size: 14px;
+    -webkit-transition: all 0.3 ease;
+    transition: all 0.3 ease;
+    cursor: pointer;
+  }
+  form .message {
+    margin: 15px 0 0;
+    color: #b3b3b3;
+    font-size: 12px;
+  }
+  form .message a {
+    color: #000000;
+    text-decoration: none;
+  }
+
+  /* register.ejs*/
+.register_form{
+  position: relative;
+  background-image: url(../images/imgForm.png);      
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 50% 90%;
+  height: 100vh;
+}
+
+.register_form .content{
+  position: absolute;
+  top:50%;
+  left:50%;
+  transform: translate(-50%, -50%);             
+}
+
+.register_form .content .regist_btn input{
+  font-family: "Roboto", sans-serif;
+    outline: 0;
+    background: #000000;
+    width:48%;
+    border: 0;
+    color: #FFFFFF;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.register_form .content input{
+  font-family: "Roboto", sans-serif;
+    outline: 0;
+    background: #f2f2f2;
+    color: #000000;
+    width: 100%;
+    border: 0;
+    margin: 0 0 15px;
+    padding: 10px;
+    box-sizing: border-box;
+    font-size: 14px;           
+}
+
+/* sale_post.ejs */
+
+
+
+/* sale_list.ejs */
+.product_list{
+  display: table;
+  width: 100%;
+  list-style: none;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  padding-inline-start: 40px;
+
+}
+
+.product_list .product_item{
+  width: 33.3%;
+  list-style: none;
+  display: inline-block;
+  margin: 20px 0 30px;
+  vertical-align: top;
+
+}
+
+.product_item span{
+  text-align: center;
+}
+
+
+.product_list_box .product_list .product_item img{
+  width: 200px;
+  height: 300px;
+}
+
+.product_namebox{
+  display: block;
+  
+}
+
+.product_namebox .product_name{
+  text-decoration: none;
+  color: #000000;
+  text-align: center;
+  font-size: 14px;
+}
+
