@@ -25,7 +25,6 @@ router.get('/main',function(req,res){
     session =req.session;
     let newlist=[]
     Product.find({}).sort('-createdAt').limit(4).exec(function(err,product){
-        console.log(product.length)
         for(var i=0;i<product.length;i++){
             var data={
                 _id:product[i]._id,

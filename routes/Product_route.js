@@ -92,8 +92,7 @@ router.get('/sale_list', function (req, res) {
             all_list: list1,
             earring_list: list2,
             ring_list: list3
-        }
-        console.log("3" + session.productInfo.all_list.length)
+        } 
         return res.render('sale_list', { session: session });
     });
 });

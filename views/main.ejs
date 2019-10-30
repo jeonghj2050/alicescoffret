@@ -25,7 +25,7 @@
                     <% for(var i=0; i< session.bannerImg.list.length; i++){ 
                         imgList=session.bannerImg.list[i]
                     %>
-                    <div>
+                    <div >
                         <h3 class="title2"><%= imgList.product_name %></h3>
                         <div class="tag_box">
                             <% for(var j=0; j< imgList.tag.length; j++){
@@ -51,7 +51,7 @@
                             <div class="projectItem_tagt <%= tag_code %>"><%= imgList.tag[j] %></div>
                             <% } %>
                         </div>
-                        <img alt="" style="width: 100%;" src=<%=imgList.thumbnail %> />
+                        <img alt="" style="width: 70%;" src=<%=imgList.thumbnail %> />
                     </div>
                     <% } %>
                 </div>

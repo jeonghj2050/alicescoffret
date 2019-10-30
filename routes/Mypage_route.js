@@ -12,10 +12,21 @@ router.get('/', function (req, res) {
     let user = session.loginInfo.userid;
     let evaluation_list = [];
     let thumbnail_list=[];
+    let userInfo=[];
     // 로그인 정보가 없을경우 로그인 창으로
     if (!session.loginInfo) {
         return res.render('login', { session: session });
     }
+    Account.findOne({ userid: user }, (err, account) => {
+        if(err) throw err;
+        session.mypage_userinfo={
+            _id: account._id,
+            userid: account.userid,
+            thumbnail:account.profile.thumbnail,
+            name:account.profile.name,
+            address:account.address,
+        };
+    });
     Evaluation.find({}, (err, evaluation) => {
         for (var i = 0; i < evaluation.length; i++) {
             var eval = {
@@ -111,11 +122,8 @@ router.get('/', function (req, res) {
                     }
                     sale_list.push(data);
                 }
-
-
             }
         }
-        
         session.purchaseList = {
             purchase_list: purchase_list
         }

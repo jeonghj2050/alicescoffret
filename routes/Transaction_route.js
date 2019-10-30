@@ -173,7 +173,7 @@ router.post('/evaluation', function (req, res) {
     comment = req.body.comment;
 
     Transaction.findOne({ _id: session.evaluationId }, (err, transaction) => { //Model.findOne 메소드
-        Account.update({ userid: transaction.purchaser }, { score: totalScore }, function (err, result) {
+        Account.update({ userid: transaction.sellers }, { score: totalScore }, function (err, result) {
             if (err) throw err;
         });
         transaction.transaction_status = "평가완료"
