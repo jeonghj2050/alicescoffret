@@ -8,7 +8,8 @@ const Account=new Schema({
     salt: String,
     profile:{
         name:String,
-        thumbnail:{type:String,default:"../public/images/clockrabbit.png"}
+        thumbnail:{type:String,default:"../public/images/clockrabbit.png"},
+        introduce:String
     },
     email:String,
     address:String,

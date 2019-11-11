@@ -5,6 +5,26 @@ const Account = require('../models/Account');
 const Transaction = require('../models/Transaction');
 const Evaluation = require('../models/Evaluation');
 const Product=require("../models/Product");
+const multer = require('multer');
+const bkfd2Password = require('pbkdf2-password');
+const hasher = bkfd2Password();
+
+const storage = multer.diskStorage({
+    destination: function (req, file, callback) {
+        callback(null, 'public/images')
+    },
+    filename: function (req, file, callback) {
+        callback(null, req.session.loginInfo.userid + file.originalname.replace(" ", ""));
+    }
+});
+
+const upload = multer({
+    storage: storage,
+    limits: {
+        files: 10,
+        fileSize: 1024 * 1024 * 1024
+    }
+})
 
 router.get('/', function (req, res) {
     session = req.session;
@@ -12,7 +32,6 @@ router.get('/', function (req, res) {
     let user = session.loginInfo.userid;
     let evaluation_list = [];
     let thumbnail_list=[];
-    let userInfo=[];
     // 로그인 정보가 없을경우 로그인 창으로
     if (!session.loginInfo) {
         return res.render('login', { session: session });
@@ -25,6 +44,7 @@ router.get('/', function (req, res) {
             thumbnail:account.profile.thumbnail,
             name:account.profile.name,
             address:account.address,
+            introduce:account.profile.introduce
         };
     });
     Evaluation.find({}, (err, evaluation) => {
@@ -132,6 +152,42 @@ router.get('/', function (req, res) {
         }
         return res.render("mypage", { session: session, moment: moment });
     });
+});
+
+router.post('/update', upload.single('update_img'),function(req,res){
+    let session=req.session;
+    if (!session.loginInfo) {
+        return res.render('login', { session: session });
+    }
+
+    Account.findOne({ _id: session.loginInfo._id }, (err, account) => {
+        var update_img,update_introduce
+        var update_addr=req.body.update_addr
+        if(req.body.update_pw){
+            hasher({password:req.body.update_pw, salt : account.salt},(err,pass,salt,hash)=>{
+                Account.update({_id: session.loginInfo._id },{password:hash}, function (err, result) {
+                });
+            });
+        }else{
+            Account.update({_id: session.loginInfo._id },{password:account.password}, function (err, result) {
+            });
+        }if(req.file){
+            var fname= req.file.originalname.replace(" ", "")
+            update_img="../public/images/" + req.session.loginInfo.userid + fname
+            console.log(update_img)
+        }else{
+            update_img=account.profile.thumbnail
+        }
+        if(req.body.introduce){
+            update_introduce=req.body.introduce
+        }else{
+            update_introduce=account.profile.introduce
+        }
+        Account.updateMany({_id: session.loginInfo._id },{profile:{thumbnail:update_img,name:account.profile.name,introduce:update_introduce},address:update_addr}, function (err, result) {
+            res.redirect('/mypage')
+        });
+    });
+
 });
 
 module.exports = router;
