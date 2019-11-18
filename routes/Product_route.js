@@ -149,7 +149,6 @@ router.get('/detail', function (req, res) {
     }
     let productid = req.query.productId;
 
-    console.log("상세" + req.session.loginInfo.point)
     Product.findOne({ _id: productid }, (err, product) => { //Model.findOne 메소드
         if (err) throw err;
         var content = voca.replaceAll(product.content, "\n", "<br/>")
@@ -199,3 +198,4 @@ router.get('/delete', function (req, res) {
 })
 
 module.exports = router;
+

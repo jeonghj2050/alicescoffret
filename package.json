@@ -21,6 +21,7 @@
     "express": "^4.17.1",
     "express-session": "^1.16.1",
     "formidable": "^1.2.1",
+    "hashmap": "^2.4.0",
     "html-entities": "^1.2.1",
     "http": "0.0.0",
     "moment": "^2.24.0",

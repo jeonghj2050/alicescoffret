@@ -36,8 +36,12 @@ router.get('/', function (req, res) {
     if (!session.loginInfo) {
         return res.render('login', { session: session });
     }
+
     Account.findOne({ userid: user }, (err, account) => {
+        var tags=account.prefertags
+        console.log(tags)
         if(err) throw err;
+
         session.mypage_userinfo={
             _id: account._id,
             userid: account.userid,

@@ -103,6 +103,15 @@ router.post('/login', function (req, res, next) {
             });
         }
 
+        //태그를 카운트 높은 순서로 정렬
+        var tags=account.prefertags
+        var sortingField = "count";
+
+        tags.sort(function(a, b) { // 오름차순
+            return b[sortingField]-a[sortingField];
+            // 13, 21, 25, 44
+        });
+
         // CHECK WHETHER THE PASSWORD IS VALID
         // 유저검색 결과가 있으면 검사 salt값으로 해쉬
         const validate = hasher({ password: req.body.password, salt: account.salt }, function (err, pass, salt, hash) {

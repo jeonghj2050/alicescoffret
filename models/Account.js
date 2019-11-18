@@ -23,9 +23,9 @@ const Account=new Schema({
         type: Number,
         default: 0
     },
+    prefertags:Array,
     recent_products:Array,
     createdAt:{type:Date,default:Date.now}
-
 });
 
 module.exports=mongoose.model("Account",Account);
