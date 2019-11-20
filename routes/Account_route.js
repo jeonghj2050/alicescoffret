@@ -14,6 +14,40 @@ const router = express.Router();
         3: USERNAM EXISTS
         
 */
+var prefertags = [ 
+    {
+        "tagName" : "spring",
+        "count" : 0
+    }, 
+    {
+        "tagName" : "summer",
+        "count" : 0
+    }, 
+    {
+        "tagName" : "fall",
+        "count" : 0
+    }, 
+    {
+        "tagName" : "winter",
+        "count" : 0
+    }, 
+    {
+        "tagName" : "cute",
+        "count" : 0
+    }, 
+    {
+        "tagName" : "brilliant",
+        "count" : 0
+    }, 
+    {
+        "tagName" : "luxury",
+        "count" : 0
+    }, 
+    {
+        "tagName" : "simple",
+        "count" : 0
+    }
+]
 router.post('/register', function (req, res) {
     // CHECK USERNAME FORMAT
     // 유저네임으로 사용할 수 있는 문자는 영어와 숫자 뿐
@@ -61,6 +95,7 @@ router.post('/register', function (req, res) {
                 address: req.body.address,
                 phone: req.body.phone,
                 birth: req.body.birth,
+                prefertags:prefertags
 
             });
             account.save(err => {
@@ -103,14 +138,6 @@ router.post('/login', function (req, res, next) {
             });
         }
 
-        //태그를 카운트 높은 순서로 정렬
-        var tags=account.prefertags
-        var sortingField = "count";
-
-        tags.sort(function(a, b) { // 오름차순
-            return b[sortingField]-a[sortingField];
-            // 13, 21, 25, 44
-        });
 
         // CHECK WHETHER THE PASSWORD IS VALID
         // 유저검색 결과가 있으면 검사 salt값으로 해쉬

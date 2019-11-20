@@ -38,18 +38,34 @@ router.get('/', function (req, res) {
     }
 
     Account.findOne({ userid: user }, (err, account) => {
-        var tags=account.prefertags
-        console.log(tags)
         if(err) throw err;
+        //태그를 카운트 높은 순서로 정렬
+        var tags=account.prefertags
+        var sortingField = "count";
 
-        session.mypage_userinfo={
-            _id: account._id,
-            userid: account.userid,
-            thumbnail:account.profile.thumbnail,
-            name:account.profile.name,
-            address:account.address,
-            introduce:account.profile.introduce
-        };
+        tags.sort(function(a, b) { // 내림차순
+            return b[sortingField]-a[sortingField];
+        });
+        if(tags[0].count==0){
+            session.mypage_userinfo={
+                _id: account._id,
+                userid: account.userid,
+                thumbnail:account.profile.thumbnail,
+                name:account.profile.name,
+                address:account.address,
+                introduce:account.profile.introduce,
+            };
+        }else{
+            session.mypage_userinfo={
+                _id: account._id,
+                userid: account.userid,
+                thumbnail:account.profile.thumbnail,
+                name:account.profile.name,
+                address:account.address,
+                introduce:account.profile.introduce,
+                prefertags:tags.slice(0,3) //상위 태그 3개
+            };
+        }
     });
     Evaluation.find({}, (err, evaluation) => {
         for (var i = 0; i < evaluation.length; i++) {
@@ -178,7 +194,6 @@ router.post('/update', upload.single('update_img'),function(req,res){
         }if(req.file){
             var fname= req.file.originalname.replace(" ", "")
             update_img="../public/images/" + req.session.loginInfo.userid + fname
-            console.log(update_img)
         }else{
             update_img=account.profile.thumbnail
         }

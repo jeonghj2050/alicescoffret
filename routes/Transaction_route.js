@@ -42,7 +42,7 @@ router.post('/purchase', function (req, res) {
     });
 
     Account.findOne({ userid: purchase_user }, (err, account) => { 
-        var sp_num,sum_num,fal_num,win_num
+        var sp_num,sum_num,fal_num,win_num,cu_num,blil_num,lux_num,sim_num
 
         if (err) throw err;
 
@@ -65,38 +65,78 @@ router.post('/purchase', function (req, res) {
                 win_num=account.prefertags[i].count
                 
             }
+            else if(account.prefertags[i].tagName=="cute"){
+                cu_num=account.prefertags[i].count
+                
+            }
+            else if(account.prefertags[i].tagName=="brilliant"){
+                blil_num=account.prefertags[i].count
+                
+            }
+            else if(account.prefertags[i].tagName=="luxury"){
+                lux_num=account.prefertags[i].count
+                
+            }
+            else if(account.prefertags[i].tagName=="simple"){
+                sim_num=account.prefertags[i].count
+                
+            }
         }
         for(var i=0;i<tags.length;i++){
-            // if(tags[i]=="봄"){
-            //     sp_num+=(1*quantity)
-            //     Account.updateMany({ _id: account._id ,prefertags:{tagName:"spring"}}, {prefertags:{count:sp_num}}, function (err, result) {
-            //         if (err) throw err;
-        
-            //     });
-                
-            // }else  if(tags[i]=="여름"){
-            //     sum_num+=(1*quantity)
-            //     Account.updateMany({ _id: account._id ,prefertags:{tagName:"summer"}}, {prefertags:{count:sum_num}}, function (err, result) {
-            //         if (err) throw err;
-        
-            //     });
-            // }
-            // else  if(tags[i]=="가을"){
-            //     fal_num+=(1*quantity)
-            //     Account.updateMany({ _id: account._id ,prefertags:{tagName:"fall"}}, {prefertags:{count:fal_num}}, function (err, result) {
-            //         if (err) throw err;
-        
-            //     });
-            // }
-            // else 
-             if(tags[i]=="겨울"){
-                console.log("111실행")
-                win_num=win_num+(1*quantity)
-                console.log("3333"+win_num)
-
-                Account.update({_id: product_id, "prefertags.tagName":"winter"},{$set:{"prefertags.4.count":win_num}}, function (err, result) {
+            if(tags[i]=="봄"){
+                sp_num+=(1*quantity)
+                Account.update({_id: account._id, "prefertags.tagName":"spring"},{"$set":{"prefertags.$.count":sp_num}}, function (err, result) {
                     if (err) throw err;
-        
+
+                });
+                
+            }else  if(tags[i]=="여름"){
+                sum_num+=(1*quantity)
+                Account.update({_id: account._id, "prefertags.tagName":"summer"},{"$set":{"prefertags.$.count":sum_num}}, function (err, result) {
+                    if (err) throw err;
+
+                });
+            }
+            else  if(tags[i]=="가을"){
+                fal_num+=(1*quantity)
+                Account.update({_id: account._id, "prefertags.tagName":"fall"},{"$set":{"prefertags.$.count":fal_num}}, function (err, result) {
+                    if (err) throw err;
+
+                });
+            }
+            else if(tags[i]=="겨울"){
+                win_num=win_num+(1*quantity)
+                Account.update({_id: account._id, "prefertags.tagName":"winter"},{"$set":{"prefertags.$.count":win_num}}, function (err, result) {
+                    if (err) throw err;
+
+                });
+            }
+            else if(tags[i]=="큐트"){
+                cu_num=cu_num+(1*quantity)
+                Account.update({_id: account._id, "prefertags.tagName":"cute"},{"$set":{"prefertags.$.count":cu_num}}, function (err, result) {
+                    if (err) throw err;
+
+                });
+            }
+            else if(tags[i]=="우아"){
+                blil_num=blil_num+(1*quantity)
+                Account.update({_id: account._id, "prefertags.tagName":"brilliant"},{"$set":{"prefertags.$.count":blil_num}}, function (err, result) {
+                    if (err) throw err;
+
+                });
+            }
+            else if(tags[i]=="화려"){
+                lux_num=lux_num+(1*quantity)
+                Account.update({_id: account._id, "prefertags.tagName":"luxury"},{"$set":{"prefertags.$.count":lux_num}}, function (err, result) {
+                    if (err) throw err;
+
+                });
+            }
+            else if(tags[i]=="심플"){
+                sim_num=sim_num+(1*quantity)
+                Account.update({_id: account._id, "prefertags.tagName":"simple"},{"$set":{"prefertags.$.count":sim_num}}, function (err, result) {
+                    if (err) throw err;
+
                 });
             }
         }
