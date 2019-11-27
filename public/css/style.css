@@ -142,6 +142,53 @@ footer{
   
 }
 
+/* register */
+ .register {
+  position: relative;
+  background-image: url(../images/imgForm.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 50% 90%;
+  height: 100vh;
+}
+
+.register .regist_form {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.register .regist_form .btn1{
+
+  color: #fff;
+  background-color: #8D8DFF;
+  font-weight: bold;
+}
+.register .regist_form .btn1:focus {
+  color: #5D5D5D;
+  background-color: #BEC8F8;
+  font-weight: bold;
+
+}
+.register .regist_form .btn1:hover {
+  color: #5D5D5D;
+  background-color: #BEC8F8;
+  font-weight: bold;
+}
+
+.register .regist_form input {
+  font-family: "Roboto", sans-serif;
+  outline: 0;
+  background: #f2f2f2;
+  color: #000000;
+  width: 100%;
+  border: 0;
+  margin: 0 0 15px;
+  padding: 10px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+
 /* main.ejs */
 .bxslider img{
   margin:  0 auto;

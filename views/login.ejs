@@ -1,123 +1,108 @@
-
 <html>
+
 <head>
   <meta charset="UTF-8">
   <title>Alice_Coffret-login</title>
   <style>
-    
-  .imgForm{
-    position: relative;
-    background-image: url(../public/images/imgForm.png);      
-    background-repeat: no-repeat;
-    background-position: center;
-    height: 100vh;
-    
-}
+    html,
+    body {
+      width: 100%;
+      margin: 0 auto;
+      font-family: 'Sunflower', sans-serif;
+      font-size: 12pt;
 
-.imgForm .content{
-    position: absolute;
-    top:50%;
-    left:50%;
-    transform: translate(-50%, -50%);                
-}
+    }
 
-.imgForm .content div input{
-    font-family: "Roboto", sans-serif;
-    outline: 0;
-    background: #f2f2f2;
-    color: #000000;
-    width: 100%;
-    border: 0;
-    margin: 0 0 15px;
-    padding: 15px;
-    box-sizing: border-box;
-    font-size: 14px;
-}
+    .content {
+      width: 90%;
+      overflow: hidden;
+      height: auto;
+      min-height: 100%;
+      margin: 0 auto;
+      margin-bottom: 20px;
+    }
 
-  .imgForm input {
-    font-family: "Roboto", sans-serif;
-    outline: 0;
-    background: #000000;
-    width:100%;
-    border: 0;
-    padding: 10px;
-    color: #FFFFFF;
-    font-size: 14px;
-    -webkit-transition: all 0.3 ease;
-    transition: all 0.3 ease;
-    cursor: pointer;
-  }
-  form .message {
-    margin: 15px 0 0;
-    color: #b3b3b3;
-    font-size: 12px;
-  }
-  form .message a {
-    color: #000000;
-    text-decoration: none;
-  }
+    .imgForm {
+      position: relative;
+      background-image: url(../public/images/imgForm.png);
+      background-repeat: no-repeat;
+      background-position: center;
+      height: 100vh;
 
-  /* register.ejs*/
-.register_form{
-  position: relative;
-  background-image: url(../images/imgForm.png);      
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 50% 90%;
-  height: 100vh;
-}
+    }
 
-.register_form .content{
-  position: absolute;
-  top:50%;
-  left:50%;
-  transform: translate(-50%, -50%);             
-}
+    .imgForm .login_form {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
 
-.register_form .content .regist_btn input{
-  font-family: "Roboto", sans-serif;
-    outline: 0;
-    background: #000000;
-    width:48%;
-    border: 0;
-    color: #FFFFFF;
-    font-size: 14px;
-    cursor: pointer;
-}
+    .imgForm .login_form div input {
+      font-family: "Roboto", sans-serif;
+      outline: 0;
+      background: #f2f2f2;
+      color: #000000;
+      width: 100%;
+      border: 0;
+      margin: 0 0 15px;
+      padding: 15px;
+      box-sizing: border-box;
+      font-size: 14px;
+    }
 
-.register_form .content input{
-  font-family: "Roboto", sans-serif;
-    outline: 0;
-    background: #f2f2f2;
-    color: #000000;
-    width: 100%;
-    border: 0;
-    margin: 0 0 15px;
-    padding: 10px;
-    box-sizing: border-box;
-    font-size: 14px;           
-}
+    form .message {
+      margin: 15px 0 0;
+      color: #b3b3b3;
+      font-size: 12px;
+    }
+
+    form .message a {
+      color: #6a3cff;
+      text-decoration: none;
+    }
+
+    .btn1 {
+      outline: 0;
+      width: 100%;
+      border: 0;
+      padding: 10px;
+      font-size: 14px;
+      -webkit-transition: all 0.3 ease;
+      transition: all 0.3 ease;
+      cursor: pointer;
+      color: #fff;
+      background-color: #8D8DFF;
+      font-weight: bold;
+    }
+
+    .btn1:focus {
+      color: #5D5D5D;
+      background-color: #BEC8F8;
+      font-weight: bold;
+
+    }
+
+    .btn1:hover {
+      color: #5D5D5D;
+      background-color: #BEC8F8;
+      font-weight: bold;
+    }
   </style>
 </head>
+
 <body>
 
   <% if(!session.loginInfo){ %>
-  <div class="imgForm">
-    <form action="/account/login" method="post" >
-      <div class="content">
-        <div class="id_box">
-          <input type="text" name="userid" placeholder="ID"/>
-        </div>
-        <div class="pw_box">
-          <input type="password" name="password" placeholder="PASSWORD"/>
-        </div>
-          <input class="btn1" type="submit" value="Login">
-          <p class="message">Not registered? <a href="/register">Create an account</a></p>
-      </div>
-    </form>
-  </div>
-  
+  <div id=login_form></div>
+  <% } else{%>
+  <h2>이미 로그인!!</h2>
   <% } %>
+  <script src="https://fb.me/react-15.1.0.js"></script>
+  <script src="https://fb.me/react-dom-15.1.0.js"></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
 
+  <script type="text/babel" src="../public/javascript/components/account/login_form.js"></script>
 </body>
+
 </html>

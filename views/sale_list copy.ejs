@@ -1,116 +1,70 @@
 <html>
-
 <head>
     <meta charset="utf-8">
     <title>Alice_Coffret-sale_list</title>
     <link href="../public/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        .location-image img {
-            width: 100%;
-            /* need to overwrite inline dimensions */
-            height: auto;
-        }
-
-        h2 {
-            margin-bottom: .5em;
-        }
-
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            grid-gap: 1em;
-        }
-
-
-        /* hover styles */
-        .location-listing {
-            position: relative;
-        }
-
-        .location-image {
-            line-height: 0;
-            overflow: hidden;
-        }
-
-        .location-image img {
-            filter: blur(0px);
-            transition: filter 0.3s ease-in;
-            transform: scale(1.1);
-        }
-
-        .location-title {
-            font-size: 1.5em;
-            font-weight: bold;
-            text-decoration: none;
-            z-index: 1;
-            position: absolute;
-            height: 100%;
-            width: 100%;
-            top: 0;
-            left: 0;
-            opacity: 0;
-            transition: opacity .5s;
-            background: rgba(90, 0, 10, 0.4);
-            color: white;
-
-            /* position the text in t’ middle*/
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .location-listing:hover .location-title {
-            opacity: 1;
-        }
-
-        .location-listing:hover .location-image img {
-            filter: blur(2px);
-        }
-
-
-        /* for touch screen devices */
-        @media (hover: none) {
-            .location-title {
-                opacity: 1;
-            }
-
-            .location-image img {
-                filter: blur(2px)
-            }
-        }
-    </style>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 </head>
 
 <body>
     <div class="header">
         <% include ./header.ejs %>
     </div>
-
     <div class="content">
         <% if(!session.productInfo){ %>
         Null!!!!
-        <% } %>
-        <div class="child-page-listing">
-            <h2>Earrings</h2>
-            <input type="button" onclick="javascript:window.location='/sale_post'" value="글작성">
-            <div class="grid-container">
-                <% for(var i=0; i< session.productInfo.earring_list.length; i++){ %>
-                <article id="" class="location-listing">
-                    <div class="location-image">
-                            <a href="#" class="portfolio-link" data-toggle="modal"
-                            onclick="javascript:window.location='/product/detail?productId=<%=session.productInfo.earring_list[i]._id %>'">
-                            <img width="300" height="169" src=<%=session.productInfo.earring_list[i].thumbnail %> />
-                        </a>
-                    </div>
-                    <div class="portfolio-caption"
-                        style="border: 1px solid #BEC8F8; padding : 5px; text-align: center;">
-                        <h4><%= session.productInfo.earring_list[i].product_name %></h4>
-                        <p class="text-muted">작성자 : <strong>
-                                <%= session.productInfo.earring_list[i].name %></strong>
-                        </p>
-                        <div class="tag_box">
-                            <% for(var j=0; j< session.productInfo.earring_list[i].tag.length; j++){
-                                                                var tag=session.productInfo.earring_list[i].tag[j]
+        <% } 
+        var category=["All","Earring","Piercing","Ring","Wristband","Necklace","Choker","Clock","Brooch","Hairclip"];
+        %>
+        <div class="tabs_box">
+            <ul class="tabs">
+                <li class="active" rel="<%=category[0] %>" name="<%=category[0] %>">전체</li>
+                <li rel="<%=category[1] %>" name="<%=category[1] %>">귀걸이</li>
+                <li rel="<%=category[2] %>" name="<%=category[2] %>">피어싱</li>
+                <li rel="<%=category[3] %>" name="<%=category[3] %>">반지</li>
+                <li rel="<%=category[4] %>" name="<%=category[4] %>">팔찌</li>
+                <li rel="<%=category[5] %>" name="<%=category[5] %>">목걸이</li>
+                <li rel="<%=category[6] %>" name="<%=category[6] %>">초커</li>
+                <li rel="<%=category[7] %>" name="<%=category[7] %>">시계</li>
+                <li rel="<%=category[8] %>" name="<%=category[8] %>">브로치</li>
+                <li rel="<%=category[9] %>" name="<%=category[9] %>">머리핀</li>
+            </ul>
+        </div>
+        <div class="child-page-listing" style="clear: both;">
+            <h2></h2>
+            <div>
+                <input class="btn1" style="float: right; margin-bottom: 20px;" type="button" onclick="javascript:window.location='/sale_post'" value="글작성">
+            </div>
+            <% for(var k=0;k< category.length; k++ ){ 
+                var list=[];
+                if(category[k]=="All"){
+                    list=session.productInfo.all_list;    
+                }
+                else if(category[k]=="Earring"){
+                    list=session.productInfo.earring_list;    
+                }else if(category[k]=="Ring"){
+                    list=session.productInfo.ring_list;
+                } 
+            %>
+            <div class="tab_container" style="clear: both;">
+                <div id="<%=category[k] %>" class="tab_content">
+                    <div class="grid-container">
+                        <% for(var i=0; i< list.length; i++){ %>
+                        <article id="" class="location-listing">
+                            <div class="location-image">
+                                <a href="#" class="portfolio-link" data-toggle="modal"
+                                    onclick="javascript:window.location='/product/detail?productId=<%=list[i]._id %>'">
+                                    <img width="300" height="169" src=<%=list[i].thumbnail %> />
+                                </a>
+                            </div>
+                            <div class="portfolio-caption">
+                                <h4 style="color: #6a3cff;"><%= list[i].product_name %></h4>
+                                <p class="text-muted" style="color: #6a3cff; font-size: 10pt;">
+                                   <%= list[i].name %>
+                                </p>
+                                <div class="tag_box">
+                                    <% for(var j=0; j< list[i].tag.length; j++){
+                                                                var tag=list[i].tag[j]
                                                                 var tag_code
                                                                 if(tag=="봄"){
                                                                     tag_code="tag_spring"
@@ -129,19 +83,48 @@
                                                                 }else if(tag=="심플"){
                                                                     tag_code="tag_simple"
                                                                 } %>
-                            <span class=<%= tag_code %>><%= session.productInfo.earring_list[i].tag[j] %></span>
-                            <% } %>
-                        </div>
+                                    <span class=<%= tag_code %>><%= list[i].tag[j] %></span>
+                                    <% } %>
+                                </div>
+                            </div>
+                        </article>
+                        <% } %>
                     </div>
-                </article>
-                <% } %>
+                </div>
             </div>
+            <% } %>
+        </div>
+    </div>
+    <div class="footer">
+            <% include ./footer.ejs %>
+        </div>
+
+        <!-- Load React. -->
+    <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+
+    <!-- Load our React component. -->
+    <script src="../public/react/button.js"></script>
 </body>
 
 </html>
 <script>
-    $('#myTab a').click(function (e) {
-        e.preventDefault();
-        $(this).tab('show');
-    })
+
+    $(function () {
+
+        $(".tab_content").hide();
+        $(".tab_content:first").show();
+        $(".child-page-listing h2").text($("ul.tabs li").attr('name'))
+        $("ul.tabs li").click(function () {
+            var tagName = $(this).attr('name')
+            $(".child-page-listing h2").text(tagName)
+            $("ul.tabs li").removeClass("active").css("color", "#333");
+            //$(this).addClass("active").css({"color": "darkred","font-weight": "bolder"});
+            $(this).addClass("active").css("color", "#6a3cff");
+            $(".tab_content").hide()
+            var activeTab = $(this).attr("rel");
+            $("#" + activeTab).fadeIn()
+        });
+    });
 </script>

@@ -4,16 +4,6 @@ const Account = require('../models/Account');
 const hasher = bkfd2Password();
 const router = express.Router();
 
-
-/*
-    ACCOUNT SIGNUP: POST /api/account/signup
-    BODY SAMPLE: { "username": "test", "password": "test" }
-    ERROR CODES:
-        1: BAD USERNAME
-        2: BAD PASSWORD
-        3: USERNAM EXISTS
-        
-*/
 var prefertags = [ 
     {
         "tagName" : "spring",
@@ -48,6 +38,16 @@ var prefertags = [
         "count" : 0
     }
 ]
+/*
+    ACCOUNT SIGNUP: POST /api/account/signup
+    BODY SAMPLE: { "username": "test", "password": "test" }
+    ERROR CODES:
+        1: BAD USERNAME
+        2: BAD PASSWORD
+        3: USERNAM EXISTS
+        
+*/
+
 router.post('/register', function (req, res) {
     // CHECK USERNAME FORMAT
     // 유저네임으로 사용할 수 있는 문자는 영어와 숫자 뿐

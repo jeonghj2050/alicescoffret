@@ -10,13 +10,13 @@
     <div class="header">
         <% include ./header.ejs %>
     </div>
-
     <div class="content">
         <% if(!session.productInfo){ %>
         Null!!!!
         <% } 
         var category=["All","Earring","Piercing","Ring","Wristband","Necklace","Choker","Clock","Brooch","Hairclip"];
         %>
+        <div id="sale_write_btn"></div>
         <div class="tabs_box">
             <ul class="tabs">
                 <li class="active" rel="<%=category[0] %>" name="<%=category[0] %>">전체</li>
@@ -33,9 +33,7 @@
         </div>
         <div class="child-page-listing" style="clear: both;">
             <h2></h2>
-            <div>
-                <input class="btn1" style="float: right; margin-bottom: 20px;" type="button" onclick="javascript:window.location='/sale_post'" value="글작성">
-            </div>
+            <div id="sale_write_btn"></div>
             <% for(var k=0;k< category.length; k++ ){ 
                 var list=[];
                 if(category[k]=="All"){
@@ -99,6 +97,13 @@
     <div class="footer">
             <% include ./footer.ejs %>
         </div>
+
+        <script src="https://fb.me/react-15.1.0.js"></script>
+        <script src="https://fb.me/react-dom-15.1.0.js"></script>
+        <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+    <!-- Load our React component. -->
+    <script type="text/babel" src="../public/javascript/components/product/product_list.js"></script>
 </body>
 
 </html>
