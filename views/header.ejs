@@ -1,18 +1,19 @@
 <link href="https://fonts.googleapis.com/css?family=Sunflower:300&display=swap" rel="stylesheet">
 <link href="../public/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="../public/css/style.css">
+<link rel="stylesheet" href="/public/css/header.css">
+<link href="../public/css/style.css" rel="stylesheet">
 <meta charset="utf-8">
 
 
 
 <header class="page_header">
     <div class="logo">
-        <a href="/main"><img src="../public/images/logo.png" width="250" height="100" /></a>
+        <a href="/main"><img src="/public/src/logo.png" width="200" /></a>
     </div>
     <div class="login_status">
         <% if(session.loginInfo){ %>
         <strong><%= session.loginInfo.name %></strong>님
-        잔여 : <%= session.loginInfo.point %>pt
+        잔여 : <span id="userPoint"><%= session.loginInfo.point %></span>pt
         <a href="/account/logout">Logout</a>
         <a href="/question">Contact Us</a>
         <% }else{%>
@@ -28,7 +29,10 @@
             <a class="menuLink" href="/product/sale_list">거래</a>
         </li>
         <li class="topMenuLi">
-            <a class="menuLink" href="/design">도안</a>
+            <a class="menuLink" href="/design">도전! 펀딩</a>
+        </li>
+        <li class="topMenuLi">
+            <a class="menuLink" href="/purchase">진행중인 펀딩</a>
         </li>
         <li class="topMenuLi">
             <a class="menuLink" href="/ranking">랭킹</a>

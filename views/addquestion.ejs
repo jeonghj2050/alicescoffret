@@ -4,9 +4,11 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
 		
-		<title>글 쓰기</title>
+		<title>문의글 쓰기</title>
 		
-  		<link href="/public/stylesheets/semantic.min.css" rel="stylesheet" >
+		  <link href="/public/stylesheets/semantic.min.css" rel="stylesheet" >
+		  <link href="/public/css/header.css" rel="stylesheet" >
+		  <link href="/public/css/footer.css" rel="stylesheet" >
 		 
 		<style>
 			* {
@@ -70,7 +72,7 @@
      
 		<div class="ui raised segment">
 			<a class="ui blue ribbon label">QnA</a>
-     			<span id="board_title">글쓰기</span>
+     			<span id="board_title">문의글</span>
 		
 			
 			<div class="ui blue fluid card">
@@ -82,7 +84,7 @@
 					 <%}else{%>
 					 	<form class="content ui form" method="post" action="/question/addquestion">
 					 <%}%>
-						<h4 class="ui dividing header">글 쓰기 입력 항목</h4>
+						<h4 class="ui dividing header">문의글 입력 항목</h4>
 						
 						<div class="two fields">
 				    		<div class="field">
@@ -98,7 +100,7 @@
 
 						<div class="two fields">
 							<div class="field">
-								<label>분류</label>
+								<label>문의유형</label>
 								<select name="type">
 									<%if (question){%>
 										<%if(question.kind == 2){%>
@@ -139,6 +141,8 @@
 	</div>
 	
 	<br><br>
-	
+	<div class="footer">
+			<% include ./footer.ejs %>
+	</div>
 </body>
 </html>

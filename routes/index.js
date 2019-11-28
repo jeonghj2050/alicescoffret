@@ -3,10 +3,15 @@ const account=require('./Account_route');
 const product=require('./Product_route');
 const transaction=require('./Transaction_route');
 const point = require("./Point_route");
+const design = require("./design_route");
 const question = require("./Question_route");
 const mypage=require("./Mypage_route");
 const ranking=require("./Ranking_route");
 let session=require('express-session');
+
+var Design = require('../models/Design');
+const Purchase = require('../models/Purchase').Purchase;
+const purchase = require("./Purchase_route");
 
 const Product=require("../models/Product");
 
@@ -23,6 +28,7 @@ router.get('/register',function(req,res){
 
 router.get('/main',function(req,res){
     session =req.session;
+    var designList, purchaseList = [];
     let newlist=[]
     Product.find({}).sort('-createdAt').limit(4).exec(function(err,product){
         for(var i=0;i<product.length;i++){
@@ -55,7 +61,14 @@ router.get('/main',function(req,res){
         session.bannerImg={
             list:list
         }
-        return res.render('main',{session:session});
+        Design.find({}).populate('writer').sort({'createdAt':-1}).limit(4).exec(function(err,designResult){
+            if(err) throw err;
+            Purchase.find({}).populate('writer').sort({'createdAt':-1}).limit(4).exec(function(pErr,purchaseResult){
+                if(pErr) throw pErr;
+                console.log(designList);
+                return res.render('main',{session:session, purchaseList:purchaseResult, designList:designResult});
+            });
+        });
     });
 })
 
@@ -89,5 +102,7 @@ router.use('/question',question);
 router.use('/transaction',transaction);
 router.use('/mypage',mypage);
 router.use('/ranking',ranking);
+router.use('/design',design);
+router.use('/purchase',purchase);
 
 module.exports=router;

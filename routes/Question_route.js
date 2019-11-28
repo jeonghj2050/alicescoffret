@@ -13,7 +13,7 @@ router.get('/', function(req, res, next) {
     }
 
     Question.find({}).populate('writer').exec( function (err, result) {
-        console.log(result);
+        console.log(result[0]);
         res.render('listquestion', { posts: result, session: session, my:false, moment});
     });
 });
@@ -98,7 +98,7 @@ router.post('/addquestion', function (req, res, next) {
         writer: accountObjId,
         type: type
     });
-    res.redirect('/question')
+    res.redirect('/question');
 });
 
 router.post('/addcoment', function (req, res, next) {
@@ -123,6 +123,25 @@ router.post('/comment/delete', function (req, res, next) {
     Question.update({_id: questionObjId}, {$pull:{comments: {"_id": commentId}}}, function (err, result) {
         res.redirect('/question/showquestion?pId=' + questionObjId);
     });
+});
+
+router.post('/changeComment', function(req, res, next){
+    let session=req.session;
+    var commentId = req.body['commentId']
+    var postId = req.body['postId']
+    var content = req.body['content']
+
+    Question.update({'_id':postId, 'comments._id': commentId},{'$set':{'comments.$.content': content}},function (err, result) {
+        if(err)
+            console.log('errrrrrrrrrrrrrrrrr : ' + err);
+        else
+            Question.find({_id: postId}).populate('comments.writer').exec(function(err2, result){
+                if(err2)
+                    console.log('errrrrrrrr2 : ' + err2);
+                else
+                    res.redirect('/question/showquestion?pId=' + postId)
+            });
+   });
 });
 
 module.exports = router;

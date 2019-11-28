@@ -4,9 +4,13 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
 
-	<title>글 리스트</title>
+	<title>문의글 리스트</title>
 
 	<link href="/public/stylesheets/semantic.min.css" rel="stylesheet" >
+	<link href="/public/css/header.css" rel="stylesheet" >
+	<link href="/public/css/footer.css" rel="stylesheet" >
+
+	
 
 	<style>
 		* {
@@ -61,61 +65,63 @@
 
 </head>
 <body>
-<div class="header">
-	<% include ./header.ejs %>
-</div>
+	<div class="header">
+		<% include ./header.ejs %>
+	</div>
 
-<div class="container">
-	<br>
+	<div class="container">
+		<br>
 
-	<div class="ui raised segment">
-		<a class="ui blue ribbon label">QnA</a>
+		<div class="ui raised segment">
+			<a class="ui blue ribbon label">QnA</a>
 
-		<%if(my){%>
-			<a class="kind" id="all" href="/question/">전체 QnA</a><a class="kind" id="my" href="/question/my" style="color: #3b83c0">나의 QnA</a>
-		<%}else{%>
-			<a class="kind" id="all" href="/question/" style="color: #3b83c0">전체 QnA</a><a class="kind" id="my" href="/question/my">나의 QnA</a>
-		<%}%>
-		<div class="ui blue fluid card">
-			<div class="content">
+			<%if(my){%>
+				<a class="kind" id="all" href="/question/">전체 QnA</a><a class="kind" id="my" href="/question/my" style="color: #3b83c0">나의 QnA</a>
+			<%}else{%>
+				<a class="kind" id="all" href="/question/" style="color: #3b83c0">전체 QnA</a><a class="kind" id="my" href="/question/my">나의 QnA</a>
+			<%}%>
+			<div class="ui blue fluid card">
+				<div class="content">
 
 
-				<div class="ui grid">
-					<div class="two wide column">번호</div>
-					<div class="eight wide column">제목</div>
-					<div class = "two wide column">분류</div>
-					<div class="two wide column">작성자</div>
-					<div class="two wide column">작성일</div>
-				</div>
-
-				<div class="ui very relaxed selection celled list">
-					<%
-					for (var i = 0; i < posts.length; i++) {
-						var curTitle = posts[i].title;
-						var curContents = posts[i].content;
-						var curWriter = posts[i].writer;
-						var curNo = i + 1;
-					%>
-					<div class="item" onclick="javascript:window.location='/question/showquestion?pId=<%=posts[i]._id %>'">
-						<div class="ui grid">
-							<div class="two wide column"><%=curNo %></div>
-							<div class="eight wide column"><%=curTitle%></div>
-							<div class ="two wide column"><%=posts[i].type%></div>
-							<div class="two wide column"><%=posts[i].writer.userid%></div>
-							<div class="two wide column"><%=moment(posts[i].createdAt).format('YYYY-MM-DD hh:mm')%></div>
-						</div>
+					<div class="ui grid">
+						<div class="two wide column">번호</div>
+						<div class="eight wide column">제목</div>
+						<div class = "two wide column">문의유형</div>
+						<div class="two wide column">작성자</div>
+						<div class="two wide column">작성일</div>
 					</div>
-					<% } %>
+
+					<div class="ui very relaxed selection celled list">
+						<%
+						for (var i = 0; i < posts.length; i++) {
+							var curTitle = posts[i].title;
+							var curContents = posts[i].content;
+							var curWriter = posts[i].writer;
+							var curNo = i + 1;
+						%>
+						<div class="item" onclick="javascript:window.location='/question/showquestion?pId=<%=posts[i]._id %>'">
+							<div class="ui grid">
+								<div class="two wide column"><%=curNo %></div>
+								<div class="eight wide column"><%=curTitle%></div>
+								<div class ="two wide column"><%=posts[i].type%></div>
+								
+								<div class="two wide column date"><%=moment(posts[i].createdAt).format('YYYY-MM-DD hh:mm')%></div>
+							</div>
+						</div>
+						<% } %>
+
+					</div>
+
+					<a class="ui button" href='/question/addquestion'>글쓰기</a>
 
 				</div>
-
-				<a class="ui button" href='/question/addquestion'>글쓰기</a>
-
 			</div>
 		</div>
 	</div>
-</div>
-
+	<div class="footer">
+			<% include ./footer.ejs %>
+	</div>
 </body>
 </html>
 

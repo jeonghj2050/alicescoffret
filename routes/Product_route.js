@@ -93,7 +93,7 @@ router.get('/sale_list', function (req, res) {
             earring_list: list2,
             ring_list: list3
         } 
-        return res.render('sale_list', { session: session });
+        return res.render('sale_list', {all_list:list1,earring_list:list2 ,ring_list:list3, session: session });
     });
 });
 
@@ -136,7 +136,7 @@ router.post('/sale_post', upload.single('imgfile'), function (req, res) {
     product.save(err => {
         if (err) throw err;
 
-        return res.render('main', { session: session });
+        return res.redirect('/product/sale_list');
     });
 
 });
@@ -193,7 +193,8 @@ router.get('/delete', function (req, res) {
 
     Product.deleteOne({ _id: product_id }, function (err) {
         if (err) return res.json(err);
-        res.render("main", { session: session });
+        //res.render("main", { session: session });
+        return res.redirect('/product/sale_list');
     });
 })
 
