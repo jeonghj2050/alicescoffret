@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+<<<<<<< HEAD
     "start": "nodemon index.js",
+=======
+>>>>>>> e3731854baff5c6c71da1b3d597cb41d21a9e6b6
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
