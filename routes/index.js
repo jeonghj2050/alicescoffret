@@ -65,7 +65,6 @@ router.get('/main',function(req,res){
             if(err) throw err;
             Purchase.find({}).populate('writer').sort({'createdAt':-1}).limit(4).exec(function(pErr,purchaseResult){
                 if(pErr) throw pErr;
-                console.log(designList);
                 return res.render('main',{session:session, purchaseList:purchaseResult, designList:designResult});
             });
         });

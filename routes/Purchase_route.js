@@ -343,16 +343,13 @@ var j = schedule.scheduleJob(rule, function(){
     var nowMonth = nowDate.getMonth();
     var nowDay = nowDate.getDate();
     var nowDate = new Date(nowYear, nowMonth, nowDay);
-    console.log(nowDate);
 
     Purchase.find({endDate:nowDate}).populate('sponsor.user').exec(function (err, result) {
-        console.log(result);
         for(var i = 0; i < result.length; i++){
             if(result[i].sponsor.length >= result[i].goal){
                 var title = result[i].title + ' 크라우드펀딩이 성공하였습니다.';
                 var html = '<h4>' + result[i].title + ' 크라우드펀딩이 성공하였습니다.</h4><div>' + result[i].title + ' 크라우드펀딩에 대한 자세한 정보는 홈페이지에서 확인하실 수 있습니다.</div>';
                 for(var j = 0; j < result[i].sponsor.length; j++){
-                    console.log(result[i].sponsor[j].user.email);
                     sendMail(result[i].sponsor[j].user.email, title, html);
                 }
             }else{

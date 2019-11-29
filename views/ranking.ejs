@@ -2,47 +2,32 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Alice_Coffret-sale_post</title>
-
-    <style>
-        .price input[type="number"]::-webkit-outer-spin-button,
-        .price input[type="number"]::-webkit-inner-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
-        }
-    </style>
-    <link rel="stylesheet" href="../public/css/indexstyle.css">
-    <script>
-        function count_ck(obj) {
-            var chkbox = document.getElementsByName("tag[]");
-            var chkCnt = 0;
-            for (var i = 0; i < chkbox.length; i++) {
-                if (chkbox[i].checked) {
-                    chkCnt++;
-                }
-            }
-            if (chkCnt > 3) {
-                alert("태그는 3개까지만!");
-                obj.checked = false;
-                return false;
-            }
-        }
-    </script>
-	<link href="/public/css/style.css" rel="stylesheet" >
+    <title>Alice_Coffret-ranking</title>
+    <link href="/public/css/style.css" rel="stylesheet">
 
 </head>
 
 <body>
+    <script type="text/javascript">
+        var rankingList =<%-JSON.stringify(rankingList) %>;
+    </script>
     <div class="header">
         <% include ./header.ejs %>
     </div>
 
     <div class="content">
-
+        <div id="ranking_box"></div>
     </div>
     <div class="footer">
         <% include ./footer.ejs %>
     </div>
+
+    <script src="https://fb.me/react-15.1.0.js"></script>
+    <script src="https://fb.me/react-dom-15.1.0.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+    <!-- Load our React component. -->
+    <script type="text/babel" src="../public/javascript/components/account/ranking_list.js"></script>
 </body>
 
 </html>
