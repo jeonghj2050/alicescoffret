@@ -129,7 +129,7 @@ router.post('/sale_post', upload.single('imgfile'), function (req, res) {
             content: req.body.post_content,
             product_quantity: req.body.product_quantity,
             price: req.body.price,
-            thumbnail: "../public/images/" + req.session.loginInfo.userid + fname,
+            thumbnail: "/public/images/" + req.session.loginInfo.userid + fname,
             tag: tag
         })
     }
@@ -142,14 +142,14 @@ router.post('/sale_post', upload.single('imgfile'), function (req, res) {
 });
 
 //판매글 상세
-router.get('/detail', function (req, res) {
+router.get('/detail/:objectId', function (req, res) {
     let session = req.session;
     if (!session.loginInfo) {
         return res.render('login', { session: session });
     }
-    let productid = req.query.productId;
+    var objectId = req.params.objectId;
 
-    Product.findOne({ _id: productid }, (err, product) => { //Model.findOne 메소드
+    Product.findOne({ _id: objectId }, (err, product) => { //Model.findOne 메소드
         if (err) throw err;
         var content = voca.replaceAll(product.content, "\n", "<br/>")
         content = voca.replaceAll(content, "<script", "&lt;script")

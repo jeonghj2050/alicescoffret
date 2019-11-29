@@ -4,7 +4,6 @@
     <meta charset="utf-8">
     <title>Alice_Coffret-sale_list</title>
     <link href="/public/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/public/css/style.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 </head>
 
@@ -18,11 +17,7 @@
         <% include ./header.ejs %>
     </div>
     <div class="content">
-        <% if(!session.productInfo){ %>
-        Null!!!!
-        <% } %>
         <div id="list_box"></div>
-        
     </div>
     <div class="footer">
         <% include ./footer.ejs %>
@@ -48,7 +43,7 @@
             $(".child-page-listing h2").text(tagName)
             $("ul.tabs li").removeClass("active").css("color", "#333");
             //$(this).addClass("active").css({"color": "darkred","font-weight": "bolder"});
-            $(this).addClass("active").css("color", "#6a3cff");
+            $(this).addClass("active").css("color", "#fff");
             $(".tab_content").hide()
             var activeTab = $(this).attr("rel");
             $("#" + activeTab).fadeIn()

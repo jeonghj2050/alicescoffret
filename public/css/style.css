@@ -97,22 +97,6 @@ a:visited{ text-decoration: none; color: #000000;}
   clear: both;
   padding-right: 150px;
 }
-.btn1 {
-  color: #fff;
-  background-color: #ff848f;
-  font-weight: bold;
-}
-.btn1:focus {
-  color: #5D5D5D;
-  background-color: #ff848f;
-  font-weight: bold;
-
-}
-.btn1:hover {
-  color: #5D5D5D;
-  background-color: #ff848f;
-  font-weight: bold;
-}
 
 .projectItem_ProjectItemCard, .projectItem_ProjectItemCard:visited,
 .projectItem_ProjectItemCard:link{
@@ -373,12 +357,6 @@ hr {
 
 
  /* sale_list.ejs */
- .location-image img {
-  width: 100%;
-  /* need to overwrite inline dimensions */
-  height: 400px;
-
-}
 h2 {
   margin-bottom: .5em;
 }
@@ -400,6 +378,9 @@ h2 {
   overflow: hidden;
 }
 .location-image img {
+  width: 100%;
+  /* need to overwrite inline dimensions */
+  height: 400px;
   filter: blur(0px);
   transition: filter 0.3s ease-in;
   transform: scale(1.1);
@@ -434,7 +415,7 @@ h2 {
 }
 .child-page-listing h2{
   text-align: center;
-  color: #ff848f;
+  color: #ff5675;
 }
 .portfolio-caption{
   border-top: 1px solid #BEC8F8; 
@@ -470,13 +451,13 @@ h2 {
     float: left;
     margin-bottom: 10px;
     text-align:center;
-    border: 1px solid #888888;
+    border: 0.3px solid #ff5675;
   }
   ul.tabs li.active {
-    background: #FFFFFF;
+    background: #ff848f;
     font-weight: bold;
-    color: #000000;
-    border-bottom: 1px solid #FFFFFF;
+    color: #fff;
+    
   }
 }
 @media (max-width:1500px){
@@ -497,13 +478,13 @@ h2 {
     float: left;
     margin-bottom: 10px;
     text-align:center;
-    border: 1px solid #888888;
+    border: 1px solid #ff5675;
   }
   ul.tabs li.active {
-    background: #FFFFFF;
+    background: #ff848f;
     font-weight: bold;
-    color: #000000;
-    border-bottom: 1px solid #FFFFFF;
+    color: #fff;
+    border-bottom: 1px solid #ff848f;
   }
 }
 @media (max-width:800px){
@@ -524,13 +505,13 @@ h2 {
     float: left;
     margin-bottom: 10px;
     text-align:center;
-    border: 1px solid #888888;
+    border: 1px solid #ff5675;
   }
   ul.tabs li.active {
-    background: #FFFFFF;
+    background: #ff848f;
     font-weight: bold;
-    color: #000000;
-    border-bottom: 1px solid #FFFFFF;
+    color: #fff;
+    border-bottom: 1px solid #ff848f;
   }
 }
 
@@ -578,21 +559,22 @@ h2 {
   background-image: none;
   border: 1px solid transparent;
   border-radius: 4px;
+  color: #fff;
+    background-color: #ff5675;
+    font-weight: bold;
 }
 
-.btn1 {
-  color: #fff;
-  background-color: #ff848f;
-}
 .btn1:focus {
   color: #5D5D5D;
   background-color: #BEC8F8;
+  font-weight: bold;
 
 }
-.btn1:hover {
-  color: #ffffff;
-  background-color: #ff5675;;
 
+.btn1:hover {
+  color: #5D5D5D;
+  background-color: #ff848f;
+  font-weight: bold;
 }
 
 /* mypage.ejs */
