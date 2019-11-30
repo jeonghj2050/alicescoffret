@@ -182,7 +182,7 @@ router.post('/update', function (req, res) {
 
     Product.findByIdAndUpdate({ _id: product_id }, req.body, function (err, product) {
         if (err) return res.json(err);
-        res.render("sale_list", { session: session });
+        res.redirect('/product/sale_list');
     })
 })
 

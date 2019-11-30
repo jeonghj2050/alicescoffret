@@ -117,6 +117,11 @@ class List extends React.Component {
                         <li rel={category[2]} name={category[2]}>피어싱</li>
                         <li rel={category[3]} name={category[3]}>반지</li>
                         <li rel={category[4]} name={category[4]}>팔찌</li>
+                        <li rel={category[5]} name={category[5]}>목걸이</li>
+                        <li rel={category[6]} name={category[6]}>초커</li>
+                        <li rel={category[7]} name={category[7]}>시계</li>
+                        <li rel={category[8]} name={category[8]}>브로치</li>
+                        <li rel={category[9]} name={category[9]}>머리핀</li>
                     </ul>
                 </div>
                 <div className="child-page-listing">

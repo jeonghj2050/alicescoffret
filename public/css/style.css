@@ -495,7 +495,7 @@ h2 {
   
   }
   ul.tabs li {
-    width: 9.8%;
+    width: 9.92%;
     height: 40px;
     line-height: 40px;
     display: table-cell;
@@ -617,7 +617,7 @@ h2 {
 
 .btn1:focus {
   color: #5D5D5D;
-  background-color: #BEC8F8;
+  background-color: #ff848f;
   font-weight: bold;
 
 }
