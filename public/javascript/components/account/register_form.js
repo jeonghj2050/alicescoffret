@@ -13,8 +13,9 @@ class Register extends React.Component {
       };
     render() {
         return (
+            
             <form method="post" action="/account/register">
-                <div className="regist_form">
+                <div className="register_content">
                     <input type="text" name="userid" required placeholder="ID" /><br />
                     <input type="password" name="password" required placeholder="Password" /><br />
                     <input type="text" name="username" required placeholder="Name" /><br />

@@ -2,7 +2,7 @@
 .header{
     margin-bottom: 20px;
   }
-  .page_header{
+.page_header{
     width: 90%;
     margin: 0 auto;
   }
@@ -112,3 +112,4 @@
     background-color: #dddddd;
     /* 배경을 RGB(DDDDDD)로 설정 */
   }
+  
